@@ -61,6 +61,7 @@ public class Main {
 
         Account account = new Account(user);
         //System.out.println("Your account number is:" + account.getAccountNumber());
+        //System.out.println("Your account number is:" + account.getAccountNumber());
 
 
     }
