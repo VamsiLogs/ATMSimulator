@@ -1,7 +1,11 @@
 package org.example;
 
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
+import static java.nio.file.Files.write;
 
 //Account Class: Track account number, owner name, and balance.
 // User class (login)
@@ -66,6 +70,9 @@ class Account{
     public void checkBalance() {
         System.out.println("Current Balance: "+ this.balance);
     }
+    public double getBalance() {
+        return balance;
+    }
 }
 
 public class Main {
@@ -110,6 +117,16 @@ public class Main {
                     account.checkBalance();
                     break;
                 case 4:
+                    System.out.println("Thank you for using our ATM, We saved you Balance for next time");
+                    String filePath = "./src/main/resources/output.txt";
+
+                    try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+                        //String currentBalance = String.valueOf(account.getBalance());
+                        writer.write(String.valueOf(account.getBalance()));
+                        System.out.println("Successfully wrote to " + filePath);
+                    } catch (IOException e) {
+                        System.err.println("Error writing to file: " + e.getMessage());
+                    }
                     break;
                 default:
                     System.out.println("Enter valid input");
